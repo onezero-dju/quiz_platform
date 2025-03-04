@@ -23,5 +23,5 @@ public class QuizDTO {
     private String category;
 
     private List<QuestionDTO> questionList = new ArrayList<>();
-    private List<UserScoresDTO> userScoresList =new ArrayList<>();
+    private List<UserScoreDTO> userScoresList =new ArrayList<>();
 }

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class QuizConverter {
-    public QuizDTO ToDto(QuizEntity quizEntity) {
+    public QuizDTO toDto(QuizEntity quizEntity) {
         return QuizDTO.builder()
                 .id(quizEntity.getId())
                 .title(quizEntity.getTitle())

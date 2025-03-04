@@ -11,18 +11,18 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/quiz")
 @RequiredArgsConstructor
 public class QuizController {
 
     private final QuizService quizService;
 
-    @PostMapping("")
+    @PostMapping("/create")
     public QuizDTO create(@Valid @RequestBody QuizRequest quizRequest) {
         return quizService.create(quizRequest);
     }
 
-    @GetMapping("/all-quiz")
+    @GetMapping("")
     public List<QuizDTO> getQuiz() {
         return quizService.getAllQuizzes();
     }

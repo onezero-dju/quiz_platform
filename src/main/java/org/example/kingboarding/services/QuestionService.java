@@ -19,7 +19,9 @@ public class QuestionService {
     private final QuestionConverter questionConverter;
 
     public QuestionDTO createQuestion(QuestionRequest questionRequest) {
-        var quizEntity = quizRepository.findById(questionRequest.getQuizId()).get();
+        var quizEntity = quizRepository.findById(questionRequest.getQuizId()).orElseThrow(
+                ()-> new IllegalArgumentException("Quiz not found")
+        );
 
         var entity = QuestionsEntity.builder()
                 .quiz(quizEntity)
@@ -29,6 +31,15 @@ public class QuestionService {
 
         var savedEntity = questionRepository.save(entity);
         return questionConverter.toDTO(savedEntity);
+    }
+    public List<QuestionDTO> getAllQuestions(long id) {
+
+        List<QuestionsEntity> questionsEntityList = questionRepository.findAllByQuizId(id);
+
+        return questionsEntityList.stream()
+                .map(questionConverter::toDTO)
+                .toList();
+
     }
 
 }
